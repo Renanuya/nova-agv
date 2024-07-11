@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <QTRSensors.h>
 
-#define MAX_SPEED 255
+#include "sensor_headers.h" // Include sensor headers
 
 QTRSensors qtr;
 
@@ -13,17 +13,6 @@ const int16_t BASE_SPEED = 100;
 const uint8_t SENSOR_COUNT = 8;
 uint16_t sensorValues[SENSOR_COUNT];
 
-#define TRIGGER_PIN_LEFT 11
-#define ECHO_PIN_LEFT 35
-
-#define TRIGGER_PIN_RIGHT 4
-#define ECHO_PIN_RIGHT 34
-
-#define TRIGGER_PIN_FRONT 0
-#define ECHO_PIN_FRONT 39
-
-#define TRIGGER_PIN_REAR 15
-#define ECHO_PIN_REAR 36
 
 struct Sensor {
     uint8_t triggerPin;
@@ -63,8 +52,13 @@ void printMotorSpeeds(int16_t leftSpeed, int16_t rightSpeed) {
 
 void setup() {
     Serial.begin(9600);
-
-    uint8_t sensorPins[SENSOR_COUNT] = {14, 27, 26, 25, 33, 32, 13, 18};
+    while (!Serial) {
+        Serial.println("Trying to connect to Serial Monitor...\n");
+        delay(1000);
+    }
+    Serial.println("Serial Monitor connected\n");
+    
+    uint8_t sensorPins[SENSOR_COUNT] = {14, 27, 26, 25, 33, 32, 13, 12};
 
     setupSensors();
 
