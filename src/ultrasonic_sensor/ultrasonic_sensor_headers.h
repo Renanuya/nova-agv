@@ -1,7 +1,7 @@
-#ifndef sensor_headers_h
-#define sensor_headers_h
+#ifndef ULTRASONIC_SENSOR_HEADERS_H
+#define ULTRASONIC_SENSOR_HEADERS_H
 
-#define MAX_SPEED 255 // Maximum speed value for motors
+#include <Arduino.h>
 
 #define TRIGGER_PIN_LEFT 18 // Trigger pin for left sensor
 #define ECHO_PIN_LEFT 35 // Echo pin for left sensor
@@ -15,4 +15,14 @@
 #define TRIGGER_PIN_REAR 15 // Trigger pin for rear sensor
 #define ECHO_PIN_REAR 36 // Echo pin for rear sensor
 
-#endif 
+struct Sensor {
+    uint8_t triggerPin;
+    uint8_t echoPin;
+};
+
+extern Sensor ultrasonic_sensors[4];
+
+void setupUltrasonicSensors();
+long measureDistance(Sensor sensor);
+
+#endif // ULTRASONIC_SENSOR_HEADERS_H

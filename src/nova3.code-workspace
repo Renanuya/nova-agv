@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"name": "nova3",
+			"path": ".."
+		},
+		{
+			"name": "agv_nova",
+			"path": "../../agv_nova"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.tcc": "cpp",
+			"random": "cpp"
+		}
+	}
+}
